@@ -1,0 +1,511 @@
+#01 a card is drawn at random from a desk of well-shuffled cards. find the probability of  is being neither a king nor a spade.
+
+def probability_neither_king_nor_spade():
+    total_cards = 52
+    kings = 4
+    spades = 13
+    kings_and_spades = 1
+    
+    
+    either_kings_or_spades = kings + spades - kings_and_spades
+    
+    neither_kings_nor_spades = total_cards - either_kings_or_spades
+    
+    probability = neither_kings_nor_spades / total_cards
+    
+    return probability
+
+print(f"The probability of a card is neither a king nor a spade is: {probability_neither_king_nor_spade():.2f}")
+
+
+#02Find the sum of the first n natural numbers.
+
+n= int(input('Enter data: '))
+sum1=0
+
+for i in range(0,n+1):
+    sum1 += i
+    
+print("Sum is: ", sum1)
+
+#03 extracting field of a roll number using string indexing and slicing.
+
+def st(no):
+
+    a = no[:3]
+    b = no[3:7]    
+    c = no[7:]
+    
+    return a,b,c
+
+no = "GUJ2024INDIA"
+a, b, c = st(no)
+
+print(f"A: {a}")
+print(f"B: {b}")
+print(f"C: {c}")
+
+#04:Word shuffle using string manipulation
+
+import random
+def shuffle_word(word):
+
+    char_list = list(word)
+    
+    random.shuffle(char_list)
+    
+    shuffled_word = ''.join(char_list)
+    
+    return shuffled_word
+
+word = "python"
+shuffled = shuffle_word(word)
+print(f"Original word: {word}")
+print(f"Shuffled word: {shuffled}")
+
+def blood_group_compatible(donor, receiver):
+
+    compatibility = {
+
+        'A+': ['A+', 'A-', 'O+', 'O-'],
+        'O+': ['O+', 'O-'],
+        'B+' : ['B+','B-', 'O+', 'O-'], 
+        'AB+' : ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'],
+        'A-' : ['A-', 'O-'],
+        'O-' : ['O-'],
+        'B-' : ['B-', 'O-'],
+        'AB-' : ['AB-', 'A-', 'B-', 'O-'],
+
+    }
+
+    if receiver in compatibility.get(donor, []):
+        return True
+    
+    return False
+
+donor = input(('donor blood group is: '))
+
+receiver = input(('receiver blood group is: '))
+
+if blood_group_compatible(donor, receiver):
+
+    print(f"The blood group {donor} is compatible with {receiver}.")
+    
+else:
+    
+    print(f"The blood group {donor} is not compatible with {receiver}.")
+
+
+#06 Find the Student From CS department where the roll number may be in capital or small-case letters
+
+stu = str(input("Enter The Roll No Of The Student: "))
+
+if stu.startswith('CS') or stu.startswith('Cs') or stu.startswith('cs') or stu.startswith('cS'):
+    
+    print("The Roll Number User Entered Is The Student Of CS Department:", stu)
+else:
+    print("The Roll Number User Entered Is The Student Is Not Of CS Department:", stu)
+
+
+#07 To read a card as input and output if the card is lucky or not.
+
+values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
+
+# all suits  Hearts, Diamonds, Clubs, Spades
+ 
+card = input("Enter a card: ")
+
+if card == '7' or card=='5' or card=='3' or card=='Ace' or card=='King':
+    print(f"{card} is a lucky card!")
+else:
+    print(f"{card} is not a lucky card.") 
+
+
+#08 Find out pass-percentage of a class. A teacher is entering the marks of students. A student passes a course if the marks are at least 40 (out of 100). The teacher wants to know the percentage of students passed. 
+
+passed_students = 0
+
+num_students = 5
+
+marks = []
+
+for i in range(num_students):
+    mark = int(input(f"Enter mark of student {i+1}: "))
+    marks.append(mark)
+    if mark >= 40:
+        passed_students += 1
+
+pass_percentage = (passed_students / num_students) * 100
+
+print(f"Pass percentage of a class: {pass_percentage:.2f}%")
+
+
+#09 Print Fibonacci sequence
+
+no = int(input("Enter the number: "))
+
+a = 0
+b = 1
+
+print("Fibonacci sequence:")
+for i in range(no):
+    print(a, end=' ')
+    a,b=b,a+b
+     
+
+#10 Collatz sequence
+n = int(input("Input a positive integer (n): "))
+
+print(n, end=" ")
+
+while n != 1:
+    if n % 2 == 0:
+        n = int(n / 2)
+    else:
+        n = 3 * n + 1
+    print(n, end=" ")
+
+# 11 Primality testing: Given a positive integer,check if the number is prime or not
+
+n = int(input("Enter a number: "))
+
+if n <= 1:
+    print("Not prime")
+else:
+    for i in range(2, n-1):
+        if n % i == 0:
+            print("Not prime")
+            break
+    else:
+        print("Prime")
+
+#12 Find birthdays in a month using dictionary.Birthdays in DD/MM/YY format
+
+months={ "01": "January",
+    "02": "February",
+    "03": "March",
+    "04": "April",
+    "05": "May",
+    "06": "June",
+    "07": "July",
+    "08": "August",
+    "09": "September",
+    "10": "October",
+    "11": "November",
+    "12": "December"
+}
+dob=input("Enter DOB(DD/MM/YYYY) :- ")
+if len(dob)  == 10:
+    if dob[3:5] in months.keys():
+        print(months[dob[3:5]])
+else:
+    print("enter in valid formate")
+
+
+#13 Exact change: Given a price identify if you have exact change summing up to that price? (Count all combinations of coins to make a given value sum.) 
+
+price = int(input('Price: '))
+deno1=1
+deno2=2
+deno3 =3
+
+print("Can you form", price, "exactly using", deno1, deno2, deno3, "?")
+
+found = False
+
+for d1 in range(0, 1 + price // deno1):
+    for d2 in range(0, 1 + price // deno2):
+        for d3 in range(0, 1 + price // deno3):
+            if d1 * deno1 + d2 * deno2 + d3 * deno3 == price:
+                print(f"Combination: {d1} of {deno1}, {d2} of {deno2}, {d3} of {deno3}")
+                found = True
+
+
+#01 Find the Perfect numbers.(A number is perfect if the sum of its proper divisors equals itself. E.g: 28 = 1+2+4+7+14)
+
+num=int(input("Enter the number: "))  
+sum=0  
+for i in range(1,num):  
+    if (num%i==0):  
+        sum+=i  
+if(sum==num):  
+    print("This is perfect number")  
+else:  
+    print("This is not a perfect number")  
+
+#02 Print a Fibonacci strings. e.g:('A', 'B', 'BA', 'BAB', 'BABBA') 
+
+n = int(input("Enter the Fibonacci string sequence: "))
+
+if n < 0:
+       print("Index must be a non-negative integer.")
+else:
+     
+    a = "A"
+    b = "B"       
+    print(a)
+    print(b)
+              
+    for i in range(2, n + 1):
+                  
+        a, b = b, b + a
+        print(b)
+
+
+#03 Print a list recursively. 
+
+def print_list_recursion(l, index=0):
+
+    if index == len(l):
+        return 1
+    
+    print(l[index])
+    
+    print_list_recursion(l, index + 1)
+
+my_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+print_list_recursion(my_list)
+
+
+#04 write a program for Binary search. 
+
+def binarySearch(arr, targetVal):
+    left = 0
+    right = len(arr) - 1
+
+    while left <= right:
+        mid = (left + right) // 2
+
+        if arr[mid] == targetVal:
+            return mid
+        
+        if arr[mid] < targetVal:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return -1
+
+myArray = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+myTarget = int(input("Enter value to find(as per above array):"))
+my=myTarget
+
+result = binarySearch(myArray, my)
+
+if result != -1:
+    print("Value",myTarget,"found at index", result)
+else:
+    print("Target not found in array.")
+
+#05 Define an empty dictionary to store course records
+
+courses = {}
+
+def add_course(course_name, credits, points):
+
+    if credits <= 0 or points < 0:
+        raise ValueError("Credits must be positive and points cannot be negative.")
+    courses[course_name] = {'credits': credits, 'points': points}
+
+def drop_course(course_name):
+
+    if course_name in courses:
+        del courses[course_name]
+    else:
+        print(f"Course '{course_name}' not found.")
+
+def print_record():
+   
+    if not courses:
+        print("No courses recorded.")
+        return
+
+    print(f"{'Course Name':<20} {'Credits':<10} {'Points':<10}")
+    print("-"*40)
+    for course_name, details in courses.items():
+        print(f"{course_name:<20} {details['credits']:<10} {details['points']:<10}")
+
+def calculate_cgpa():
+   
+    total_credits = sum(details['credits'] for details in courses.values())
+    weighted_points = sum(details['credits'] * details['points'] for details in courses.values())
+    
+    if total_credits == 0:
+        return 0.0
+    
+    return weighted_points / total_credits
+
+
+if __name__ == "__main__":
+    
+    add_course("Math", 3, 9)
+    add_course("Science", 4, 12)
+    
+    # Printing the record
+    print("Academic Record:")
+    print_record()
+    
+    # Calculating CGPA
+    print(f"CGPA: {calculate_cgpa():.2f}")
+
+    # Dropping a course
+    drop_course("Math")
+    
+    # Printing the updated record
+    print("\nUpdated Academic Record:")
+    print_record()
+    
+    # Recalculating CGPA
+    print(f"Updated CGPA: {calculate_cgpa():.2f}")
+
+
+#06
+
+def initialize_matrix(rows, cols, initial_value=0):
+    
+    return [[initial_value for _ in range(cols)] for _ in range(rows)]
+
+def print_matrix(matrix):
+    
+    if not matrix:
+        print("Matrix is empty.")
+        return
+    
+    rows = len(matrix)
+    cols = len(matrix[0])
+    
+    for row in matrix:
+        print(" ".join(f"{elem:5}" for elem in row))
+    print()
+
+def add_matrices(matrix1, matrix2):
+    
+    rows1, cols1 = len(matrix1), len(matrix1[0])
+    rows2, cols2 = len(matrix2), len(matrix2[0])
+    
+    if (rows1, cols1) != (rows2, cols2):
+        raise ValueError("Matrices must have the same dimensions for addition.")
+    
+    return [[matrix1[i][j] + matrix2[i][j] for j in range(cols1)] for i in range(rows1)]
+
+def multiply_matrices(matrix1, matrix2):
+  
+    rows1, cols1 = len(matrix1), len(matrix1[0])
+    rows2, cols2 = len(matrix2), len(matrix2[0])
+    
+    if cols1 != rows2:
+        raise ValueError("Number of columns in matrix1 must be equal to the number of rows in matrix2 for multiplication.")
+    
+    
+    result = initialize_matrix(rows1, cols2)
+    
+   
+    for i in range(rows1):
+        for j in range(cols2):
+            result[i][j] = sum(matrix1[i][k] * matrix2[k][j] for k in range(cols1))
+    
+    return result
+
+# Example usage
+if __name__ == "__main__":
+    # Initialize matrices
+    A = initialize_matrix(2, 3, 1)
+    B = initialize_matrix(2, 3, 2)
+    C = initialize_matrix(3, 2, 1)
+    D = initialize_matrix(3, 2, 3)
+    
+    # Print matrices
+    print("Matrix A:")
+    print_matrix(A)
+    print("Matrix B:")
+    print_matrix(B)
+    
+    # Add matrices
+    try:
+        E = add_matrices(A, B)
+        print("Matrix A + B:")
+        print_matrix(E)
+    except ValueError as e:
+        print(e)
+    
+    # Print matrices for multiplication
+    print("Matrix C:")
+    print_matrix(C)
+    print("Matrix D:")
+    print_matrix(D)
+    
+    # Multiply matrices
+    try:
+        F = multiply_matrices(C, D)
+        print("Matrix C * D:")
+        print_matrix(F)
+    except ValueError as e:
+        print(e)
+
+
+#07
+
+def print_board(board):
+    
+    print("\n".join([" | ".join(row) for row in board]))
+    print()
+
+def check_winner(board, player):
+    
+    # Check rows and columns
+    for i in range(3):
+        if all([cell == player for cell in board[i]]) or all([board[j][i] == player for j in range(3)]):
+            return True
+    
+    # Check diagonals
+    if board[0][0] == player and board[1][1] == player and board[2][2] == player:
+        return True
+    if board[0][2] == player and board[1][1] == player and board[2][0] == player:
+        return True
+    
+    return False
+
+def is_board_full(board):
+    
+    return all([cell != " " for row in board for cell in row])
+
+def tic_tac_toe():
+   
+    board = [[" " for _ in range(3)] for _ in range(3)]
+    current_player = "X"
+    
+    while True:
+        print_board(board)
+        
+        try:
+            row = int(input(f"Player {current_player}, enter the row (0, 1, or 2): "))
+            col = int(input(f"Player {current_player}, enter the column (0, 1, or 2): "))
+            
+            if row not in range(3) or col not in range(3):
+                print("Invalid input. Please enter numbers between 0 and 2.")
+                continue
+            
+            if board[row][col] != " ":
+                print("Cell already taken. Choose another cell.")
+                continue
+            
+            board[row][col] = current_player
+            
+            if check_winner(board, current_player):
+                print_board(board)
+                print(f"Player {current_player} wins!")
+                break
+            
+            if is_board_full(board):
+                print_board(board)
+                print("The game is a tie!")
+                break
+            
+            current_player = "O" if current_player == "X" else "X"
+        
+        except ValueError:
+            print("Invalid input. Please enter numeric values.")
+
+if __name__ == "__main__":
+    tic_tac_toe()
+
